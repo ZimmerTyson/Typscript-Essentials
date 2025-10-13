@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+let age = 30;
+let firstName = 'mario';
+let isFictional;
+let planet = 'Earth';
+let moons = 1;
+let isLarge = false;
+planet = 'saturn';
+moons = 123;
+let something = null;
+let anotherThing = undefined;
+let test = 'this is a test';
