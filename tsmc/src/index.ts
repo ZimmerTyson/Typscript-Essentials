@@ -354,3 +354,27 @@ console.log(idOne, idTwo);
 // ---------
 // tagged interfaces
 // ---------
+
+
+interface NewUser {
+  type: 'user'
+  username: string,
+  email: string,
+  id: Id
+}
+
+interface Person {
+  type: 'person'
+  fristname: string,
+  age: number,
+  id: Id
+}
+
+function logDetails(value: NewUser | Person): void {
+  if(value.type === 'user') {
+    console.log(value.email, value.username)
+  } 
+  if(value.type === 'person') {
+    
+  }
+}
