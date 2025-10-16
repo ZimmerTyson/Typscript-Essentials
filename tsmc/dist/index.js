@@ -223,3 +223,92 @@ printQuantity(vehicle);
 // you will throw an error. unlike when creating a template literal, you can't have key value
 //pairs exist that weren't defined in the initial interface. 
 printQuantity({ quantity: 50 });
+function multiplyTwoNumnbers(first, second) {
+    return first * second;
+}
+function squareNumber(num) {
+    return num * num;
+}
+function joinTwoNumbers(numOne, numTwo) {
+    return `${numOne}${numTwo}`;
+}
+let calcs = [];
+calcs.push(multiplyTwoNumnbers);
+calcs.push(squareNumber);
+const shapeOne = {
+    name: 'square',
+    calcArea(l) {
+        return 1 * 1;
+    }
+};
+const shapeTwo = {
+    name: 'circle',
+    calcArea(r) {
+        return Math.PI * r ^ 2;
+    }
+};
+const userTwo = {
+    id: 1,
+    format() {
+        return `This user has an id of ${this.id}`;
+    }
+};
+const bill = {
+    id: 2,
+    amount: 50,
+    server: 'mario',
+    format() {
+        return `Bill with id ${this.id} has $${this.amount} to pay`;
+    }
+};
+function printFormatted(val) {
+    console.log(val.format());
+}
+function printBill(bill) {
+    console.log('server:', bill.server);
+    console.log(bill.format());
+}
+printFormatted(userTwo);
+printFormatted(bill);
+printBill(bill);
+const personOne = {
+    id: 1,
+    firstName: 'mario',
+};
+const personTwo = {
+    id: '2',
+    firstName: 'yoshi',
+    email: 'yoshi@whatup.com',
+};
+const personThree = {
+    email: 'peach@howdyp.net'
+};
+function printUser(user) {
+    console.log(user.id, user.email, user.firstName);
+}
+// printUser(personOne)
+printUser(personTwo);
+class Pizza {
+    constructor(title, price) {
+        this.title = title;
+        this.price = price;
+    }
+    title;
+    price;
+    base = 'classic';
+    toppings = [];
+    addTopping(topping) {
+        this.toppings.push(topping);
+    }
+    removeTopping(topping) {
+        this.toppings = this.toppings.filter((t) => t !== topping);
+    }
+    selectBase(b) {
+        this.base = b;
+    }
+}
+const pizza = new Pizza('mario special', 15);
+pizza.selectBase('garlic');
+pizza.addTopping('mushrooms');
+pizza.addTopping('olives');
+console.log(pizza);

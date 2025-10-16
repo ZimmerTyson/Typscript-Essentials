@@ -425,3 +425,188 @@ printQuantity(vehicle);
 //pairs exist that weren't defined in the initial interface. 
 
 printQuantity({quantity: 50})
+
+
+
+
+
+// ---------
+// function signatures
+// ---------
+
+
+type Calculator = (numOne: number, numTwo: number) => number
+
+function multiplyTwoNumnbers(first: number, second: number) {
+  return first * second
+}
+
+function squareNumber(num: number) {
+  return num * num
+}
+
+function joinTwoNumbers(numOne: number, numTwo: number) {
+  return `${numOne}${numTwo}`
+}
+
+let calcs: Calculator[] = [];
+
+calcs.push(multiplyTwoNumnbers)
+calcs.push(squareNumber)
+//calcs.push(joinTwoNumbers)
+
+// ---------
+// function signatures on interfaces
+// ---------
+
+
+interface HasArea {
+  name: string,
+  calcArea: (a: number) => number
+}
+
+const shapeOne: HasArea = {
+  name: 'square',
+  calcArea(l: number) {
+    return 1 * 1
+  }
+}
+
+const shapeTwo: HasArea = {
+  name: 'circle',
+  calcArea(r: number) {
+    return Math.PI * r^2
+  }
+}
+
+
+
+// ---------
+// extending interfaces
+// ---------
+
+
+
+interface HasFormatter {
+  format(): string
+}
+
+interface Bill extends HasFormatter {
+  id: string | number,
+  amount: number,
+  server: string
+}
+
+const userTwo = {
+  id: 1,
+  format(): string {
+    return `This user has an id of ${this.id}`
+  }
+}
+
+const bill = {
+  id: 2, 
+  amount: 50,
+  server: 'mario',
+  format(): string {
+    return `Bill with id ${this.id} has $${this.amount} to pay`
+  }
+}
+
+function printFormatted(val: HasFormatter): void {
+  console.log(val.format());
+}
+
+function printBill(bill: Bill): void {
+  console.log('server:', bill.server)
+  console.log(bill.format())
+}
+
+printFormatted(userTwo);
+printFormatted(bill);
+printBill(bill)
+
+
+
+
+
+// ---------
+// extending type aliases
+// ---------
+
+
+
+type Persons = {
+  id: string | number,
+  firstName: string
+}
+
+
+type Users = Persons & {
+  email: string,
+}
+
+const personOne = {
+  id: 1, 
+  firstName: 'mario',
+
+}
+
+const personTwo = {
+  id: '2',
+  firstName: 'yoshi',
+  email: 'yoshi@whatup.com',
+}
+
+const personThree = {
+  email: 'peach@howdyp.net'
+}
+
+
+function printUser(user: Users) {
+  console.log(user.id, user.email, user.firstName);
+}
+
+// printUser(personOne)
+printUser(personTwo);
+// printUser(personThree);
+
+
+
+// ---------
+// classes 101
+// ---------
+
+type Base = 'classic' | 'thick' | 'thin' | 'garlic'
+
+
+class Pizza {
+  constructor(title: string, price: number) {
+    this.title = title
+    this.price = price
+  }
+  title: string
+  price: number
+  base: Base = 'classic'
+  toppings: string[] = []
+
+  addTopping(topping: string): void {
+    this.toppings.push(topping)
+  }
+
+  removeTopping(topping: string): void {
+    this.toppings = this.toppings.filter((t) => t !== topping)
+  }
+  selectBase(b: Base): void {
+    this.base = b;
+  }
+}
+
+const pizza = new Pizza('mario special', 15, );
+
+pizza.selectBase('garlic');
+pizza.addTopping('mushrooms');
+pizza.addTopping('olives'); 
+
+
+console.log(pizza);
