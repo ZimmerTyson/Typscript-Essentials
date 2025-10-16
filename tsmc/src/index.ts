@@ -378,3 +378,50 @@ function logDetails(value: NewUser | Person): void {
     
   }
 }
+
+
+
+
+// ---------
+// reusable interfaces
+// ---------
+
+
+interface hasQuantity {
+  quantity: number,
+}
+
+const something: hasQuantity = { quantity: 50};
+
+
+function printQuantity(item: hasQuantity): void {
+  console.log(`the quantity of the item is ${item.quantity}`)
+}
+
+const fruit = {
+  name: 'mango', 
+  quantity: 50,
+}
+const vehicle = {
+  type: 'car',
+  quantity: 3,
+}
+const persons = {
+  name: 'mario',
+  age: 30,
+}
+
+printQuantity(fruit);
+printQuantity(vehicle);
+
+// invoking the printQuantity function using the persons variable will give an error
+// due to the type not being present from the interface we are using within the function
+
+// printQuantity(persons);
+
+
+// if you attempt to use a new key or attempt to state one that wasn't defined in the interface,
+// you will throw an error. unlike when creating a template literal, you can't have key value
+//pairs exist that weren't defined in the initial interface. 
+
+printQuantity({quantity: 50})
